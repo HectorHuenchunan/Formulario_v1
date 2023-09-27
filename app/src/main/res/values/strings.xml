@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Formulario_v1</string>
+    <string name="hint_name">Nombre Completo</string>
+    <string name="hint_email">Correo electronico</string>
+    <string name="hint_Edad">Edad</string>
+    <string name="hint_tel">Numero de telefono</string>
+    <string name="genero">Genero: </string>
+    <string name="text_checkbox_1">Mensaje para CheckBox</string>
+    <string name="enviar_datos">Enviar datos</string>
+    <string name="text_checkbox_femele">Mujer</string>
+    <string name="text_checkbox_male">Hombre</string>
+    <string name="text_checkbox_omitir">No Binario</string>
+    <string name="hint_dir">Direccion</string>
+    <string name="hint_date">DD/MM/AAAA</string>
 </resources>
