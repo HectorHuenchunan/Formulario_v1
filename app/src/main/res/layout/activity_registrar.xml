@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
     android:padding="@dimen/common_padding_default"
-    tools:context=".MainActivity2">
+    tools:context=".Activity_Registrar">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilName"
@@ -109,12 +109,22 @@
             android:inputType="date"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnEnviar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/enviar_datos"
         app:icon="@drawable/ic_send"
+        app:iconGravity="textEnd"
+        app:toggleCheckedStateOnClick="false" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLimpear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Limpiar_datos"
         app:iconGravity="textEnd"
         app:toggleCheckedStateOnClick="false" />
 
