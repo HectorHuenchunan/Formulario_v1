@@ -2,17 +2,15 @@ package com.hectorhuenchunan.formulario_v1
 
 import android.content.ContentValues
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
 import java.util.Date
 
 
 
-class MainActivity2 : AppCompatActivity() {
+class Activity_Registrar : AppCompatActivity() {
 
     private lateinit var etName: TextInputEditText
     private lateinit var etEmail: TextInputEditText
@@ -24,7 +22,7 @@ class MainActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_registrar)
         etName = findViewById(R.id.etName)
         etEmail = findViewById(R.id.etEmail)
         etDir = findViewById(R.id.etDir)
@@ -32,11 +30,11 @@ class MainActivity2 : AppCompatActivity() {
         etCel = findViewById(R.id.etCel)
         etDate = findViewById(R.id.etDate)
 
-        val btnEnviar = findViewById<MaterialButton>(R.id.btnEnviar)
+
 
         dbHelper = MyDatabaseHelper(this)
-
-            btnEnviar.setOnClickListener {
+        val btnEnviar = findViewById<MaterialButton>(R.id.btnEnviar)
+        btnEnviar.setOnClickListener {
                 val name = etName.text.toString()
                 val email = etEmail.text.toString()
                 val dir = etDir.text.toString()
@@ -51,7 +49,20 @@ class MainActivity2 : AppCompatActivity() {
 
                 // Guardar los datos en la base de datos
             insertData(name, email, dir, edad, cel, date, activo)
-            }
+        }
+
+        //Accion de limpear los datos del formulario
+        val btnLimpiar = findViewById<MaterialButton>(R.id.btnLimpear)
+        btnLimpiar.setOnClickListener{
+            etName.setText("")
+            etEmail.setText("")
+            etDir.setText("")
+            etEdad.setText("")
+            etCel.setText("")
+            etDate.setText("")
+        }
+
+
     }
 
     private fun insertData(name: String, email: String, dir: String, edad: Int, cel: Int, date: Date, activo: Boolean) {
