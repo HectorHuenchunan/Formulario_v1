@@ -68,12 +68,12 @@
             app:layout_constraintTop_toTopOf="parent"
             style="@style/Widget.Material3.TextInputEditText.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etAltura"
+                android:id="@+id/etEdad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:imeOptions="actionNext"
-                android:nextFocusForward="@id/etKey"/>
+                android:nextFocusForward="@id/etCel"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -87,7 +87,7 @@
             app:layout_constraintTop_toTopOf="parent"
             style="@style/Widget.Material3.TextInputEditText.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etKey"
+                android:id="@+id/etCel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
@@ -115,7 +115,8 @@
         android:layout_height="wrap_content"
         android:text="@string/enviar_datos"
         app:icon="@drawable/ic_send"
-        app:iconGravity="textEnd" />
+        app:iconGravity="textEnd"
+        app:toggleCheckedStateOnClick="false" />
 
 
 </LinearLayout>

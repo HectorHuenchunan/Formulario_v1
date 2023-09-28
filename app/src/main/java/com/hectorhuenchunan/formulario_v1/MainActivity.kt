@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         // inicio (Pasar de una actividad a otra)
-        val button = findViewById<Button>(R.id.siguinte)
+        val button = findViewById<Button>(R.id.Ingresar_datos)
         button.setOnClickListener {
             val intent = Intent(this,MainActivity2::class.java)
             startActivity(intent)
