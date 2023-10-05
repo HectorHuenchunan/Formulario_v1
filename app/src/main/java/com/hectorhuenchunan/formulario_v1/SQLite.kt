@@ -7,7 +7,7 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) {
+class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) {
 
     companion object {
         private const val NAME = "my_database.db"
@@ -47,7 +47,7 @@ class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context, NAME, null,
     }
 
     // Operación de inserción date: String
-    fun insertData(name: String, email: String, dir: String, edad: Int, cel: Int, activo: Boolean): Long {
+    fun insertData(name: String, email: String, dir: String, edad: Int, cel: Int, date: String ,activo: Boolean): Long {
         val db = this.writableDatabase
         val values = ContentValues()
         values.put(COLUMN_NAME, name)
@@ -55,7 +55,7 @@ class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context, NAME, null,
         values.put(COLUMN_DIR, dir)
         values.put(COLUMN_EDAD, edad)
         values.put(COLUMN_CEL, cel)
-        //values.put(COLUMN_DATE, date)
+        values.put(COLUMN_DATE, date)
         values.put(COLUMN_BOOLEAN, if (activo) 1 else 0)  // Convertir a INTEGER para representar datos booleanos
 
         val newRowId = db.insert(TABLE_NAME, null, values)

@@ -6,11 +6,13 @@ import android.widget.TextView
 import android.content.Intent
 import android.widget.Button
 import android.content.ContentValues
+import android.icu.text.SimpleDateFormat
+import java.util.Date
 
 
 class Activity_Confirmar_datos : AppCompatActivity() {
 
-    private lateinit var dbHelper: MyDatabaseHelper
+    private lateinit var BBDD: SQLite
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirmar_datos)
@@ -29,32 +31,27 @@ class Activity_Confirmar_datos : AppCompatActivity() {
 
         //  Volver a la actividad_Registrar
         val btn_Volver = findViewById<Button>(R.id.btnVolver)
+
         btn_Volver.setOnClickListener {
             val intent_volver = Intent(this,Activity_Registrar::class.java)
             startActivity(intent_volver)
         }
 
-        //crear metoda para registar los datos la bbdd
-        dbHelper = MyDatabaseHelper(this)
+        //crear metodo para registar los datos la bbdd
+        BBDD = SQLite(this)
         val btn_registrar = findViewById<Button>(R.id.btnEnviar)
         btn_registrar.setOnClickListener {
-          /*
-            val Nombre = Name.text.toString()
-            val email = Email.text.toString()
-            val dir = Dir.text.toString()
-            val edadText = Edad.text.toString()
-            val edad: Int = edadText.toInt()
-            val celText = Cel.text.toString()
-            val cel: Int = celText.toInt()
-            val dateString = FechaNacimiento.text.toString()
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy")
-            val date: Date = dateFormat.parse(dateString)
-            val activo = true
-
             // Guardar los datos en la base de datos
-            insertData(name, email, dir, edad, cel, date, activo)
-
-           */
+            val Nombre = intent.getStringExtra("Nombre").toString()
+            val email = intent.getStringExtra("Email").toString()
+            val dir = intent.getStringExtra("Direccion").toString()
+            val edadText = intent.getStringExtra("Edad")
+            val edad: Int = edadText.toString().toInt()
+            val celText = intent.getStringExtra("NumeroTelefono")
+            val cel: Int = celText.toString().toInt()
+            val Date = intent.getStringExtra("FechaNacimiento").toString()
+            val activo = true
+            BBDD.insertData(Nombre,email,dir,edad,cel,Date,activo)
         }
 
     }
