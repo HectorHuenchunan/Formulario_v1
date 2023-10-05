@@ -46,8 +46,8 @@ class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context, NAME, null,
         onCreate(db)
     }
 
-    // Operación de inserción
-    fun insertData(name: String, email: String, dir: String, edad: Int, cel: Int, date: String, activo: Boolean): Long {
+    // Operación de inserción date: String
+    fun insertData(name: String, email: String, dir: String, edad: Int, cel: Int, activo: Boolean): Long {
         val db = this.writableDatabase
         val values = ContentValues()
         values.put(COLUMN_NAME, name)
@@ -55,7 +55,7 @@ class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context, NAME, null,
         values.put(COLUMN_DIR, dir)
         values.put(COLUMN_EDAD, edad)
         values.put(COLUMN_CEL, cel)
-        values.put(COLUMN_DATE, date)
+        //values.put(COLUMN_DATE, date)
         values.put(COLUMN_BOOLEAN, if (activo) 1 else 0)  // Convertir a INTEGER para representar datos booleanos
 
         val newRowId = db.insert(TABLE_NAME, null, values)

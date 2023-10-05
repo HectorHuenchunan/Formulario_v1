@@ -1,7 +1,9 @@
 package com.hectorhuenchunan.formulario_v1
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -11,38 +13,60 @@ import java.util.Date
 
 
 class Activity_Registrar : AppCompatActivity() {
-
-    private lateinit var etName: TextInputEditText
-    private lateinit var etEmail: TextInputEditText
-    private lateinit var etDir: TextInputEditText
-    private lateinit var etEdad: TextInputEditText // cambiar nombre de variable
-    private lateinit var etCel: TextInputEditText
-    private lateinit var etDate: TextInputEditText
+   //Creacion de variables para tratamientos
+    private lateinit var Name: TextInputEditText
+    private lateinit var Email: TextInputEditText
+    private lateinit var Dir: TextInputEditText
+    private lateinit var Edad: TextInputEditText
+    private lateinit var Cel: TextInputEditText
+    private lateinit var FechaNacimiento: TextInputEditText
     private lateinit var dbHelper: MyDatabaseHelper
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrar)
-        etName = findViewById(R.id.etName)
-        etEmail = findViewById(R.id.etEmail)
-        etDir = findViewById(R.id.etDir)
-        etEdad = findViewById(R.id.etEdad)
-        etCel = findViewById(R.id.etCel)
-        etDate = findViewById(R.id.etDate)
+        //Asignar variables
+        Name = findViewById(R.id.etNombre)
+        Email = findViewById(R.id.etEmail)
+        Dir = findViewById(R.id.etDireccion)
+        Edad = findViewById(R.id.etEdad)
+        Cel = findViewById(R.id.etNtelefono)
+        FechaNacimiento = findViewById(R.id.etFechaNacimiento)
+
+        //Captura los datos del formulario en las variables declaras previamente
+        val btn_confirmacion = findViewById<Button>(R.id.btnConfirmar)
+        btn_confirmacion.setOnClickListener {
+           //Creacion de variable Intent para enviar los datos a otro activity
+            val intent = Intent(this,Activity_Confirmar_datos::class.java)
+            intent.putExtra("Nombre", Name.text.toString())
+            intent.putExtra("Email", Email.text.toString())
+            intent.putExtra("Direccion", Dir.text.toString())
+            intent.putExtra("Edad", Edad.text.toString())
+            intent.putExtra("NumeroTelefono", Cel.text.toString())
+            intent.putExtra("FechaNacimiento", FechaNacimiento.text.toString())
+            //Iniciar la actividad Activity_Confirmar_datos
+            startActivity(intent)
+        }
 
 
 
+
+
+
+
+   /*
         dbHelper = MyDatabaseHelper(this)
         val btnEnviar = findViewById<MaterialButton>(R.id.btnEnviar)
         btnEnviar.setOnClickListener {
-                val name = etName.text.toString()
-                val email = etEmail.text.toString()
-                val dir = etDir.text.toString()
-                val edadText = etEdad.text.toString()
+                val name = Name.text.toString()
+                val email = Email.text.toString()
+                val dir = Dir.text.toString()
+                val edadText = Edad.text.toString()
                 val edad: Int = edadText.toInt()
-                val celText = etCel.text.toString()
+                val celText = Cel.text.toString()
                 val cel: Int = celText.toInt()
-                val dateString = etDate.text.toString()
+                val dateString = FechaNacimiento.text.toString()
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy")
                 val date: Date = dateFormat.parse(dateString)
                 val activo = true
@@ -52,16 +76,16 @@ class Activity_Registrar : AppCompatActivity() {
         }
 
         //Accion de limpear los datos del formulario
-        val btnLimpiar = findViewById<MaterialButton>(R.id.btnLimpear)
+        val btnLimpiar = findViewById<MaterialButton>(R.id.btnLimpiar)
         btnLimpiar.setOnClickListener{
-            etName.setText("")
-            etEmail.setText("")
-            etDir.setText("")
-            etEdad.setText("")
-            etCel.setText("")
-            etDate.setText("")
+            Name.setText("")
+            Email.setText("")
+            Dir.setText("")
+            Edad.setText("")
+            Cel.setText("")
+            FechaNacimiento.setText("")
         }
-
+     */
 
     }
 

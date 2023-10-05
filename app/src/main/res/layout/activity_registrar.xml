@@ -10,14 +10,14 @@
     tools:context=".Activity_Registrar">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilName"
+        android:id="@+id/tilNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_name"
         app:endIconMode="clear_text"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etName"
+            android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"/>
@@ -39,14 +39,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilDir"
+        android:id="@+id/tilDireccion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_dir"
         app:endIconMode="clear_text"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDir"
+            android:id="@+id/etDireccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"/>
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_padding_default">
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilAltura"
+            android:id="@+id/tilEdad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/hint_Edad"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:imeOptions="actionNext"
-                android:nextFocusForward="@id/etCel"/>
+                android:nextFocusForward="@id/etNtelefono"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -82,12 +82,12 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_tel"
             android:layout_marginStart="@dimen/common_padding_min"
-            app:layout_constraintStart_toEndOf="@id/tilAltura"
+            app:layout_constraintStart_toEndOf="@id/tilEdad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/Widget.Material3.TextInputEditText.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCel"
+                android:id="@+id/etNtelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
@@ -96,14 +96,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilDate"
+        android:id="@+id/tilFechaNacimiento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_date"
         app:endIconMode="clear_text"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDate"
+            android:id="@+id/etFechaNacimiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"/>
@@ -112,7 +112,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnEnviar"
+        android:id="@+id/btnConfirmar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/enviar_datos"
@@ -121,7 +121,7 @@
         app:toggleCheckedStateOnClick="false" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLimpear"
+        android:id="@+id/btnLimpiar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/Limpiar_datos"
