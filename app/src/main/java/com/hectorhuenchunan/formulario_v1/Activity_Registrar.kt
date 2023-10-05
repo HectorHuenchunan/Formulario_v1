@@ -75,6 +75,8 @@ class Activity_Registrar : AppCompatActivity() {
             insertData(name, email, dir, edad, cel, date, activo)
         }
 
+    */
+
         //Accion de limpear los datos del formulario
         val btnLimpiar = findViewById<MaterialButton>(R.id.btnLimpiar)
         btnLimpiar.setOnClickListener{
@@ -85,7 +87,7 @@ class Activity_Registrar : AppCompatActivity() {
             Cel.setText("")
             FechaNacimiento.setText("")
         }
-     */
+
 
     }
 
