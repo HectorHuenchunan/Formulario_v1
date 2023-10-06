@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
     android:padding="@dimen/common_padding_default"
-    tools:context=".Activity_Registrar">
+    tools:context=".ActivityRegistrar">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNombre"

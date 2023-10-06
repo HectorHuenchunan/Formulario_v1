@@ -2,8 +2,8 @@ package com.hectorhuenchunan.formulario_v1
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
-import android.database.SQLException
+//import android.database.Cursor
+//import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -46,7 +46,7 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
         onCreate(db)
     }
 
-    // Operación de inserción date: String
+    // Operación de inserción
     fun insertData(name: String, email: String, dir: String, edad: Int, cel: Int, date: String ,activo: Boolean): Long {
         val db = this.writableDatabase
         val values = ContentValues()
@@ -63,11 +63,16 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
         return newRowId
     }
 
+    /*
     // Operación de lectura
     fun getAllData(): Cursor? {
         val db = this.readableDatabase
         return db.rawQuery("SELECT * FROM $TABLE_NAME", null)
     }
+
+     */
+
+    /*
 
     // Operación de actualización
     fun updateData(id: Long, name: String, email: String, dir: String, edad: Int, cel: Int, date: String, activo: Boolean): Boolean {
@@ -86,6 +91,10 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
         return rowsAffected > 0
     }
 
+     */
+
+    /*
+
     // Operación de eliminación
     fun deleteData(id: Long): Boolean {
         val db = this.writableDatabase
@@ -93,4 +102,6 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
         db.close()
         return rowsAffected > 0
     }
+
+     */
 }
