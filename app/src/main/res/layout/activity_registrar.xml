@@ -11,16 +11,19 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNombre"
+        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_name"
-        app:endIconMode="clear_text"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox">
+        android:textColorHint="#070707"
+        app:endIconMode="clear_text">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"/>
+            android:textColorHint="#070707"
+            android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

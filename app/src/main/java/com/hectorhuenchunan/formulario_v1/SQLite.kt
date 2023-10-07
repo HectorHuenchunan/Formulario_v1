@@ -2,7 +2,7 @@ package com.hectorhuenchunan.formulario_v1
 
 import android.content.ContentValues
 import android.content.Context
-//import android.database.Cursor
+import android.database.Cursor
 //import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -14,19 +14,19 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
         private const val VERSION = 1
 
         // Define los nombres de las columnas
-        private const val TABLE_NAME = "Personas"
-        private const val COLUMN_ID = "id"
-        private const val COLUMN_NAME = "name"
-        private const val COLUMN_EMAIL = "email"
-        private const val COLUMN_DIR = "dir"
-        private const val COLUMN_EDAD = "edad"
-        private const val COLUMN_CEL = "cel"
-        private const val COLUMN_DATE = "date"
-        private const val COLUMN_BOOLEAN = "activo"
+        internal const val TABLE_NAME = "Personas"
+        internal const val COLUMN_ID = "_id"
+        internal const val COLUMN_NAME = "name"
+        internal const val COLUMN_EMAIL = "email"
+        internal const val COLUMN_DIR = "dir"
+        internal const val COLUMN_EDAD = "edad"
+        internal const val COLUMN_CEL = "cel"
+        internal const val COLUMN_DATE = "date"
+        internal const val COLUMN_BOOLEAN = "activo"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        // Define la estructura de tu tabla aquí
+        // Define la estructura de tu tabla aquí, incluyendo la columna _id
         val createTableSQL = "CREATE TABLE IF NOT EXISTS $TABLE_NAME (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COLUMN_NAME TEXT," +
@@ -40,11 +40,13 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
         db.execSQL(createTableSQL)
     }
 
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+    override fun onUpgrade(db: SQLiteDatabase, VersionAnterior: Int, NuevaVersion: Int) {
         // Maneja actualizaciones de la base de datos si es necesario
         db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         onCreate(db)
     }
+
+
 
     // Operación de inserción
     fun insertData(name: String, email: String, dir: String, edad: Int, cel: Int, date: String ,activo: Boolean): Long {
@@ -58,19 +60,19 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
         values.put(COLUMN_DATE, date)
         values.put(COLUMN_BOOLEAN, if (activo) 1 else 0)  // Convertir a INTEGER para representar datos booleanos
 
-        val newRowId = db.insert(TABLE_NAME, null, values)
+        val nuevoRegistro = db.insert(TABLE_NAME, null, values)
         db.close()
-        return newRowId
+        return nuevoRegistro
     }
 
-    /*
+
     // Operación de lectura
-    fun getAllData(): Cursor? {
+    fun mostrarTodo(): Cursor? {
         val db = this.readableDatabase
-        return db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+        return db.rawQuery("SELECT id as _id, * FROM $TABLE_NAME", null)
     }
 
-     */
+
 
     /*
 
