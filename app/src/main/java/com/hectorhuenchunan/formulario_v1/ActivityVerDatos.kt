@@ -1,52 +1,89 @@
 package com.hectorhuenchunan.formulario_v1
 
-import android.database.Cursor
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.SimpleCursorAdapter
+
 import androidx.appcompat.app.AppCompatActivity
 
 class ActivityVerDatos : AppCompatActivity() {
 
-    private lateinit var listView: ListView
-    private lateinit var database: SQLite
+    private lateinit var bbdd: SQLite
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_ver_datos)
+            bbdd = SQLite(this)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ver_datos)
-        listView = findViewById(R.id.listView_1)
-        database = SQLite(this)
+            // Llama a un método para cargar y mostrar los datos iniciales
+            cargarDatos()
 
-        // Abre la base de datos
-        val cursor = database.mostrarTodo()
+        }
 
-        // Configura el adaptador para el ListView
-        val from = arrayOf(
-            SQLite.COLUMN_ID,
-            SQLite.COLUMN_NAME,
-            SQLite.COLUMN_EMAIL,
-            SQLite.COLUMN_DIR,
-            SQLite.COLUMN_EDAD,
-            SQLite.COLUMN_CEL,
-            SQLite.COLUMN_DATE,
-            SQLite.COLUMN_BOOLEAN
-        )
+    override fun onResume() {
+        super.onResume()
 
-        val to = intArrayOf(
-            android.R.id.text1,
-            android.R.id.text2
+        // Actualiza la vista cada vez que se vuelve a esta actividad
+        cargarDatos()
+    }
+
+    private fun cargarDatos() {
+        val cursor = bbdd.mostrarTodo()
+        val columnNames = arrayOf("_id", "name", "email", "dir", "edad", "cel", "date", "activo")
+        val viewIds = intArrayOf(
+            R.id.tvId,
+            R.id.tvNombre,
+            R.id.tvEmail,
+            R.id.tvDireccion,
+            R.id.tvEdad,
+            R.id.tvCelular,
+            R.id.tvFecha
         )
 
         val adapter = SimpleCursorAdapter(
             this,
-            android.R.layout.simple_selectable_list_item,
+            R.layout.predesino,
             cursor,
-            from,
-            to,
+            columnNames,
+            viewIds,
             0
         )
 
-        // Asigna el adaptador al ListView
+        val listView = findViewById<ListView>(R.id.listView)
         listView.adapter = adapter
+
+        // Configura el listener para manejar clics en elementos de la lista
+        listView.setOnItemClickListener { _, _, _, _ ->
+            if (cursor != null && !cursor.isClosed) {
+                val idColumnIndex = cursor.getColumnIndex("_id")
+                val nombreColumnIndex = cursor.getColumnIndex("name")
+                val emailColumnIndex = cursor.getColumnIndex("email")
+                val dirColumnIndex = cursor.getColumnIndex("dir")
+                val edadColumnIndex = cursor.getColumnIndex("edad")
+                val celularColumnIndex = cursor.getColumnIndex("cel")
+                val fechaColumnIndex = cursor.getColumnIndex("date")
+
+                val idIndice = cursor.getString(idColumnIndex)
+                val nombreindex = cursor.getString(nombreColumnIndex)
+                val emailindex = cursor.getString(emailColumnIndex)
+                val dirindex = cursor.getString(dirColumnIndex)
+                val edadindex = cursor.getString(edadColumnIndex)
+                val celularindex = cursor.getString(celularColumnIndex)
+                val fechaindex = cursor.getString(fechaColumnIndex)
+
+                val intent = Intent(this, ActivityCRUD::class.java)
+                intent.putExtra("IDSeleccionado", idIndice)
+                intent.putExtra("NombreSeleccionado", nombreindex)
+                intent.putExtra("EmailSeleccionado", emailindex)
+                intent.putExtra("DireccionSeleccionado", dirindex)
+                intent.putExtra("EdadSeleccionado", edadindex)
+                intent.putExtra("CelularSeleccionado", celularindex)
+                intent.putExtra("FechaSeleccionado", fechaindex)
+
+                startActivity(intent)
+            }
+        }
+    }
+
 }
-}
+

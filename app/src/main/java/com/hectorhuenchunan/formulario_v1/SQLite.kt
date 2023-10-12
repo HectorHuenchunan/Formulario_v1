@@ -3,7 +3,6 @@ package com.hectorhuenchunan.formulario_v1
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-//import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -27,30 +26,32 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
 
     override fun onCreate(db: SQLiteDatabase) {
         // Define la estructura de tu tabla aquí, incluyendo la columna _id
-        val createTableSQL = "CREATE TABLE IF NOT EXISTS $TABLE_NAME (" +
-                "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "$COLUMN_NAME TEXT," +
-                "$COLUMN_EMAIL TEXT," +
-                "$COLUMN_DIR TEXT," +
-                "$COLUMN_EDAD INTEGER," +
-                "$COLUMN_CEL INTEGER," +
-                "$COLUMN_DATE DATE," +
-                "$COLUMN_BOOLEAN INTEGER" +  // Cambiado a INTEGER para representar datos booleanos
-                ")"
-        db.execSQL(createTableSQL)
-    }
+            val createTableSQL = "CREATE TABLE IF NOT EXISTS $TABLE_NAME (" +
+                    "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "$COLUMN_NAME TEXT," +
+                    "$COLUMN_EMAIL TEXT," +
+                    "$COLUMN_DIR TEXT," +
+                    "$COLUMN_EDAD INTEGER," +
+                    "$COLUMN_CEL INTEGER," +
+                    "$COLUMN_DATE DATE," +
+                    "$COLUMN_BOOLEAN INTEGER" +
+                    ")"
+            db.execSQL(createTableSQL)
+        }
 
-    override fun onUpgrade(db: SQLiteDatabase, VersionAnterior: Int, NuevaVersion: Int) {
+
+    override fun onUpgrade(db: SQLiteDatabase?, versionAnterior: Int, nuevaVersion: Int) {
         // Maneja actualizaciones de la base de datos si es necesario
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+
+        db!!.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         onCreate(db)
     }
 
 
 
-    // Operación de inserción
-    fun insertData(name: String, email: String, dir: String, edad: Int, cel: Int, date: String ,activo: Boolean): Long {
-        val db = this.writableDatabase
+    // metodo de insert
+    fun insertData(name: String, email: String, dir: String, edad: Int, cel: Int, date: String ,activo: Boolean) {
+
         val values = ContentValues()
         values.put(COLUMN_NAME, name)
         values.put(COLUMN_EMAIL, email)
@@ -59,51 +60,52 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
         values.put(COLUMN_CEL, cel)
         values.put(COLUMN_DATE, date)
         values.put(COLUMN_BOOLEAN, if (activo) 1 else 0)  // Convertir a INTEGER para representar datos booleanos
-
+        val db = this.writableDatabase
         val nuevoRegistro = db.insert(TABLE_NAME, null, values)
         db.close()
-        return nuevoRegistro
+
     }
 
 
-    // Operación de lectura
+    // metodo de select * from
     fun mostrarTodo(): Cursor? {
         val db = this.readableDatabase
-        return db.rawQuery("SELECT id as _id, * FROM $TABLE_NAME", null)
-    }
-
-
-
-    /*
-
-    // Operación de actualización
-    fun updateData(id: Long, name: String, email: String, dir: String, edad: Int, cel: Int, date: String, activo: Boolean): Boolean {
-        val db = this.writableDatabase
-        val values = ContentValues()
-        values.put(COLUMN_NAME, name)
-        values.put(COLUMN_EMAIL, email)
-        values.put(COLUMN_DIR, dir)
-        values.put(COLUMN_EDAD, edad)
-        values.put(COLUMN_CEL, cel)
-        values.put(COLUMN_DATE, date)
-        values.put(COLUMN_BOOLEAN, if (activo) 1 else 0)  // Convertir a INTEGER para representar datos booleanos
-
-        val rowsAffected = db.update(TABLE_NAME, values, "$COLUMN_ID = ?", arrayOf(id.toString()))
+        return db.rawQuery("SELECT * FROM $TABLE_NAME", null)
         db.close()
-        return rowsAffected > 0
     }
 
-     */
 
-    /*
 
-    // Operación de eliminación
-    fun deleteData(id: Long): Boolean {
+   // metodo de update
+    fun actualizarRegistro(_id: Int, name: String, email: String, dir: String, edad: Int, cel: Int, date: String, activo: Boolean): Boolean {
+
+       val db = this.writableDatabase
+       val values = ContentValues()
+       values.put(COLUMN_NAME, name)
+       values.put(COLUMN_EMAIL, email)
+       values.put(COLUMN_DIR, dir)
+       values.put(COLUMN_EDAD, edad)
+       values.put(COLUMN_CEL, cel)
+       values.put(COLUMN_DATE, date)
+       values.put(COLUMN_BOOLEAN, if (activo) 1 else 0)
+       val whereClause = "_id = ?"
+       val whereArgs = arrayOf(_id.toString())
+
+       val rowsAffected = db.update(TABLE_NAME, values, whereClause, whereArgs)
+       db.close()
+       return rowsAffected > 0
+    }
+
+    fun deleteData(_id: Int): Boolean {
         val db = this.writableDatabase
-        val rowsAffected = db.delete(TABLE_NAME, "$COLUMN_ID = ?", arrayOf(id.toString()))
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(_id.toString())
+
+        // Realiza la eliminación
+        val deletedRows = db.delete(TABLE_NAME, whereClause, whereArgs)
         db.close()
-        return rowsAffected > 0
+
+        return deletedRows > 0
     }
 
-     */
 }
