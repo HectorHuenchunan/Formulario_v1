@@ -11,16 +11,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // inicio (Pasar de una actividad a otra)
-        val button_registrar = findViewById<Button>(R.id.btnIngresar_datos)
-        button_registrar.setOnClickListener {
-            val intent = Intent(this,Activity_Registrar::class.java)
+        val buttonRegistrar = findViewById<Button>(R.id.btnIngresar_datos)
+        buttonRegistrar.setOnClickListener {
+            val intent = Intent(this,ActivityRegistrar::class.java)
             startActivity(intent)
         }
         // fin
 
-        val button_ver = findViewById<Button>(R.id.btnVer_datos)
-        button_ver.setOnClickListener {
-            val intent = Intent(this,Activity_Ver_datos::class.java)
+        val buttonVer = findViewById<Button>(R.id.btnVer_datos)
+        buttonVer.setOnClickListener {
+            val intent = Intent(this,ActivityVerDatos::class.java)
             startActivity(intent)
         }
     }

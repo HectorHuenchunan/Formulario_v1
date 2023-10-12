@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Formulario_v1</string>
+    <string name="app_name">Formulario_v</string>
     <string name="hint_name">Nombre Completo</string>
     <string name="hint_email">Correo electronico</string>
     <string name="hint_Edad">Edad</string>
@@ -16,4 +16,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Limpiar_datos">Limpiar Formulario</string>
     <string name="Editar">Editar Datos</string>
+    <string name="confirmarDatos">Confirmar los datos</string>
+    <string name="editar_datos">Editar Registro</string>
+    <string name="eliminar_datos">Elminar Registro</string>
+    <string name="buscar">Buscar Registro</string>
+    <string name="volver">Volver Atras</string>
+    <string name="guardar">Guardar</string>
 </resources>
