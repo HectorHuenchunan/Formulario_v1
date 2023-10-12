@@ -131,5 +131,14 @@
         app:iconGravity="textEnd"
         app:toggleCheckedStateOnClick="false" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/volver"
+        app:iconGravity="textEnd"
+        app:icon="@drawable/ic_back"
+        app:toggleCheckedStateOnClick="false" />
+
 
 </LinearLayout>

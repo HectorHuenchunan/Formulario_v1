@@ -31,8 +31,7 @@ class ActivityConfirmardatos : AppCompatActivity() {
         bbdd = SQLite(this)
 
         btnVolver.setOnClickListener {
-            val intentvolver = Intent(this, ActivityRegistrar::class.java)
-            startActivity(intentvolver)
+           finish()
         }
 
         btnRegistrar.setOnClickListener {

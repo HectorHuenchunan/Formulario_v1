@@ -42,7 +42,7 @@ class ActivityCRUD : AppCompatActivity() {
         }
 
         btnEliminar.setOnClickListener {
-            bbdd.deleteData(iDUpdate)
+            bbdd.borrarRegistro(iDUpdate)
             finish()
         }
 

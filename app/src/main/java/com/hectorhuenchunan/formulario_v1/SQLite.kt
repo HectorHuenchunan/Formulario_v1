@@ -96,7 +96,7 @@ class SQLite(context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) 
        return rowsAffected > 0
     }
 
-    fun deleteData(_id: Int): Boolean {
+    fun borrarRegistro(_id: Int): Boolean {
         val db = this.writableDatabase
         val whereClause = "$COLUMN_ID = ?"
         val whereArgs = arrayOf(_id.toString())

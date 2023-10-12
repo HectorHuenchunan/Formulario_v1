@@ -50,7 +50,7 @@ class ActivityRegistrar : AppCompatActivity() {
         }
 
         //Accion de limpear los datos del formulario
-        val btnLimpiar = findViewById<MaterialButton>(R.id.btnLimpiar)
+        val btnLimpiar = findViewById<Button>(R.id.btnLimpiar)
         btnLimpiar.setOnClickListener{
             name.setText("")
             email.setText("")
@@ -60,6 +60,11 @@ class ActivityRegistrar : AppCompatActivity() {
             fechaNacimiento.setText("")
         }
 
+        //Accion de volver atras con los datos cargados
+        val btnVolver = findViewById<Button>(R.id.btnVolver)
+        btnVolver.setOnClickListener{
+            finish()
+        }
 
     }
 }
